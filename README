@@ -1,0 +1,46 @@
+How to build and install
+
+1) First build and install the CheMPS2 shared object. This should result in
+   a file libchemps2.so and the chemps2 include files somewhere on your system.
+
+2) Set environment variables properly
+
+   * If libchemps2.so is not in any of the default library locations, add the
+     the directory that contains libchemps2.so to the LD_LIBRARAY_PATH variable.
+     For example::
+
+        export LD_LIBRARAY_PATH=$LD_LIBRARAY_PATH:/some/path/that/contains/sofile
+
+     This is usually the ${CMAKE_INSTALL_PREFIX}/lib64
+
+   * If the include files are not installed in a default location, add it to the
+     CPATH variable. For example::
+
+        export CPATH=$CPATH:/some/path/that/contains/includefiles
+
+     This is usually the ${CMAKE_INSTALL_PREFIX}/include
+
+3) Build the Python wrapper::
+
+    python setup.py build_ext -L $LD_LIBRARY_PATH
+
+4) Install the Python wrapper::
+
+    python setup.py install
+
+   You may want to select a non-standard location for the installation with the
+   --user or --prefix option. If you do so, make sure the variables $PATH and
+   $PYTHONPATH are also correctly set.
+
+5) Run the tests::
+
+    cd tests
+    python test1.py
+    python test2.py
+    python test3.py
+    python test4.py
+    python test5.py
+    python test6.py
+    python test7.py
+    python test8.py
+    python test9.py
